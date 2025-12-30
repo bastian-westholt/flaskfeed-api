@@ -78,9 +78,9 @@ def add_post():
         return jsonify({"error": "Please fill out required fields"}), 400
 
     new_post = {
-        'id': len(POSTS) + 1,
+        'id': max([p['id'] for p in POSTS], default=0) + 1,
         'title': title,
-        'content': content
+         'content': content
     }
 
     POSTS.append(new_post)
